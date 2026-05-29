@@ -7,7 +7,7 @@ API REST de calculadora con autenticacion JWT, historial por usuario y validacio
 ### Requisitos
 
 - Java 21 o superior (Spring Boot 3.2.5)
-- Gradle instalado globalmente (el proyecto no incluye `gradlew`)
+- Gradle version 8.9 instalado globalmente (el proyecto no incluye `gradlew`)
 - MySQL accesible desde la aplicacion (la BD esta en la nube)
 - Conexion a internet para validacion de correos (Abstract API)
 
