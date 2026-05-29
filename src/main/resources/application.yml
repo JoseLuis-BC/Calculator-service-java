@@ -1,0 +1,36 @@
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+  tracing:
+    enabled: false
+    sampling:
+      probability: 1.0
+    export:
+      enabled: false
+
+spring:
+  application:
+    name: calculator-service
+  main:
+    banner-mode: off
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  profiles:
+    active:
+      - prod
+  web:
+    resources:
+      add-mappings: false
+
+server:
+  port: 8081
+  servlet:
+    context-path: /raven/

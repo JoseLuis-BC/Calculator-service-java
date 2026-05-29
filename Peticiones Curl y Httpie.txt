@@ -1,0 +1,98 @@
+Httpie - login
+printf '{
+  "username": "jl",
+  "password": "12345"
+}'| http  --follow --timeout 3600 POST 'http://localhost:8081/raven/api/auth/login' \
+ Content-Type:'application/json'
+
+printf '{
+  "username": "Prueba",
+  "password": "12345"
+}'| http  --follow --timeout 3600 POST 'http://localhost:8081/raven/api/auth/login' \
+ Content-Type:'application/json'
+
+Curl - login
+curl --location 'http://localhost:8081/raven/api/auth/login' \
+--header 'Content-Type: application/json' \
+--data '{
+  "username": "jl",
+  "password": "12345"
+}'
+
+curl --location 'http://localhost:8081/raven/api/auth/login' \
+--header 'Content-Type: application/json' \
+--data '{
+  "username": "Prueba",
+  "password": "12345"
+}' 
+ 
+Httpie - Register
+printf '{
+    "username": "Prueba2",
+    "password": "12345",
+    "email": "lb.desconocido@gmail.com"
+}'| http  --follow --timeout 3600 POST 'http://localhost:8081/raven/api/auth/register' \
+ Content-Type:'application/json' \
+ Authorization:'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc'
+
+Curl - Register 
+curl --location 'http://localhost:8081/raven/api/auth/register' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc' \
+--data-raw '{
+    "username": "Prueba2",
+    "password": "12345",
+    "email": "lb.desconocido@gmail.com"
+}' 
+ 
+Httpie - Calculator
+printf '{
+    "operation": "SQRT",
+    "operandA": 1000000
+}'| http  --follow --timeout 3600 POST 'http://localhost:8081/raven/api/calculate' \
+ Content-Type:'application/json' \
+ Authorization:'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc'
+
+Curl - Calculator
+curl --location 'http://localhost:8081/raven/api/calculate' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc' \
+--data '{
+    "operation": "SQRT",
+    "operandA": 1000000
+}'
+
+Httpie - History
+http  --follow --timeout 3600 GET 'http://localhost:8081/raven/api/history?page=0&size=5' \
+ Authorization:'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc'
+ 
+Curl - History
+curl --location 'http://localhost:8081/raven/api/history?page=0&size=5' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc' \
+--data ''
+
+Httpie - Full history
+http  --follow --timeout 3600 GET 'http://localhost:8081/raven/api/history?operation=DIVISION&startDate=2026-05-28T00:00:00&endDate=2026-05-28T23:59:59&page=0&size=10&sortBy=timestamp&direction=desc' \
+ Authorization:'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc'
+
+Curl - Full history
+curl --location 'http://localhost:8081/raven/api/history?operation=DIVISION&startDate=2026-05-28T00%3A00%3A00&endDate=2026-05-28T23%3A59%3A59&page=0&size=10&sortBy=timestamp&direction=desc' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc' \
+--data ''
+
+Httpie - History ID
+http  --follow --timeout 3600 GET 'http://localhost:8081/raven/api/history/d78d3e1f-87a6-4d4b-b2f7-5e26d3d64d82'
+
+Curl - History ID
+curl --location 'http://localhost:8081/raven/api/history/d78d3e1f-87a6-4d4b-b2f7-5e26d3d64d82' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc' \
+--data ''
+
+Httpie - Delete History ID
+http  --follow --timeout 3600 DELETE 'http://localhost:8081/raven/api/history/a31017e2-6b7a-4303-b0ac-2e18bc42f46a' \
+ Authorization:'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc'
+ 
+Curl - Delete History ID
+curl --location --request DELETE 'http://localhost:8081/raven/api/history/a31017e2-6b7a-4303-b0ac-2e18bc42f46a' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbCIsInVzZXJJZCI6IjBmOTkyNTc5LWVhOWYtNDQzMy05YTQzLTczYzhiYTcwMGIzNyIsImlhdCI6MTc4MDAyNjc5MCwiZXhwIjoxNzgwMDI3MDkwfQ.gHBMV05JtSomo5h2QRtpROV1UhhREOkAbJG6ZRXd-Cc' \
+--data ''

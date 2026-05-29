@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    ​
+    <springProperty scope="context" name="springAppName" source="spring.application.name" />
+    <property name="LOG_FILE" value="log/${springAppName}.log" />
+    <property name="LOG_PATTERN" value='{ "fecha":"%d{yyyy-MM-dd HH:mm:ss.SSS}","Level":"%level","trace":"%X{traceId:-}","span":"%X{spanId:-}","parent":"%X{parentId:-}","thread":"%thread","class":"%logger{40}:%line","Mensaje":"%message" }' />
+    
+    <!-- Appender to log to console -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!-- Minimum logging level to be presented in the console logs -->
+            <level>DEBUG</level>
+        </filter>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+        <providers>
+        <nestedField>
+            <fieldName>log_data</fieldName>
+            <providers>
+                <pattern>
+                    <pattern>
+                       ${LOG_PATTERN}
+                    </pattern>
+                </pattern>
+                <arguments />
+            </providers>
+          </nestedField>
+          </providers>
+        </encoder>
+    </appender>
+    ​
+    <root level="INFO">
+        <appender-ref ref="Console" />
+    </root>
+</configuration>
